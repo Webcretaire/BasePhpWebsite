@@ -1,0 +1,29 @@
+# Démarrage du module d'URL Rewriting :
+
+# Options +FollowSymlinks
+
+RewriteEngine On
+
+php_value upload_max_filesize 500M
+php_value post_max_size 500M
+
+# Redirection http vers https si besoin :
+
+# RewriteCond %{HTTPS} off
+# RewriteRule (.*) https://%{HTTP_HOST}%{REQUEST_URI}
+
+# Gestion des erreurs :
+
+#ErrorDocument 404 /erreur.php?erreur=404
+
+#ErrorDocument 403 /erreur.php?erreur=403
+
+#ErrorDocument 500 /erreur.php?erreur=500
+
+# Rewriting :
+
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME} !-l
+
+RewriteRule .* index.php [L]
